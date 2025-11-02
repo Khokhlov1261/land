@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Продажа LED экранов QIANGLI DM. Заводская сборка, лёгкий монтаж, великолепное качество. Прямые поставки из Китая на склад. Размер кабинетов 500×500 мм.">
+    <title>Продажа LED экранов|ELECTRION LED</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+            background: #0a0a0a;
+            color: #e0e0e0;
+        }
+        
+        /* Темный анимированный градиентный фон */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(-45deg, #0a0a0a, #1a1a2e, #16213e, #0f3460, #1a1a2e);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Модульная сетка как у LED экранов - усиленная */
+        .led-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(0, 150, 255, 0.08) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(0, 150, 255, 0.08) 2px, transparent 2px);
+            background-size: 100px 100px;
+            animation: gridPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes gridPulse {
+            0%, 100% {
+                opacity: 0.4;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+        
+        /* Дополнительная мелкая сетка для модульности */
+        .led-grid::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 200, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 200, 255, 0.05) 1px, transparent 1px);
+            background-size: 25px 25px;
+        }
+        
+        /* LED точки (пиксели) */
+        .led-dots {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .led-dot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(0, 200, 255, 0.5);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
+            animation: ledPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes ledPulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+        
+        header {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: #fff;
+            z-index: 1;
+        }
+        
+        /* Видео фон */
+        .header-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            object-fit: cover;
+            filter: brightness(0.4) contrast(1.2);
+        }
+        
+        @media (max-width: 768px) {
+            .header-video {
+                /* На мобильных показываем только изображение для экономии трафика */
+                display: none;
+            }
+            
+            header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url('https://images.unsplash.com/photo-1591488320449-011701bb6704?w=1920&h=1080&fit=crop') center/cover no-repeat;
+                z-index: -2;
+                filter: brightness(0.4) contrast(1.2);
+            }
+        }
+        
+        /* Затемнение поверх видео */
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 50, 150, 0.5));
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        /* Крутая анимация для заголовка */
+        .header-content h1 {
+            text-shadow: 0 0 30px rgba(0, 200, 255, 1), 0 0 60px rgba(0, 150, 255, 0.8);
+            margin-bottom: 30px;
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            opacity: 0;
+            transform: translateY(50px) scale(0.8);
+            animation: titleAppear 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            background: linear-gradient(135deg, #fff 0%, #00c8ff 50%, #fff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleAppear 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, shimmer 3s infinite;
+        }
+        
+        @keyframes titleAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8) rotateX(90deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0deg);
+            }
+        }
+        
+        @keyframes shimmer {
+            0%, 100% {
+                background-position: 0% center;
+            }
+            50% {
+                background-position: 200% center;
+            }
+        }
+        
+        /* Анимация для подзаголовка */
+        .header-content .lead {
+            text-shadow: 0 0 20px rgba(0, 200, 255, 0.8);
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: subtitleAppear 1s ease-out 0.5s forwards;
+        }
+        
+        @keyframes subtitleAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Анимация для кнопки */
+        .header-content .btn {
+            opacity: 0;
+            transform: scale(0.8);
+            animation: buttonAppear 0.8s ease-out 1s forwards;
+        }
+        
+        @keyframes buttonAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* Фиксированное меню в правом верхнем углу - в строку */
+        .fixed-menu {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .fixed-menu-item {
+            background: rgba(10, 10, 20, 0.85);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 150, 255, 0.3);
+            border-radius: 50px;
+            padding: 8px 18px;
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 15px rgba(0, 150, 255, 0.2);
+            opacity: 0;
+            transform: translateX(50px);
+            animation: menuItemAppear 0.6s ease-out forwards;
+            white-space: nowrap;
+        }
+        
+        .fixed-menu-item:nth-child(1) { animation-delay: 1.5s; }
+        .fixed-menu-item:nth-child(2) { animation-delay: 1.7s; }
+        .fixed-menu-item:nth-child(3) { animation-delay: 1.9s; }
+        
+        @keyframes menuItemAppear {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .fixed-menu-item:hover {
+            background: rgba(0, 150, 255, 0.3);
+            border-color: rgba(0, 200, 255, 0.8);
+            color: #00c8ff;
+            transform: translateX(-2px) scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 200, 255, 0.5);
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
+        }
+        
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(50px); /* начальное смещение */
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* visible — элемент появился и больше не исчезает */
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* дополнительные эффекты (по желанию) */
+.scroll-animate.animate-fade-left  { transform: translateX(-50px); }
+.scroll-animate.animate-fade-right { transform: translateX(50px); }
+.scroll-animate.animate-scale      { transform: scale(0.8); }
+.scroll-animate.animate-rotate     { transform: rotate(-10deg) scale(0.9); }
+
+/* задержки */
+.scroll-animate.delay-1 { transition-delay: 0.1s; }
+.scroll-animate.delay-2 { transition-delay: 0.2s; }
+.scroll-animate.delay-3 { transition-delay: 0.3s; }
+.scroll-animate.delay-4 { transition-delay: 0.4s; }
+.scroll-animate.delay-5 { transition-delay: 0.5s; }
+.scroll-animate.delay-6 { transition-delay: 0.6s; }
+        
+        /* Адаптивность для планшетов и мобильных */
+        @media (max-width: 1024px) {
+            section {
+                margin: 60px auto;
+                padding: 60px 40px;
+            }
+            
+            .header-content h1 {
+                font-size: 3.5rem;
+            }
+            
+            .header-content .lead {
+                font-size: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .fixed-menu {
+                top: 15px;
+                right: 15px;
+                gap: 6px;
+            }
+            
+            .fixed-menu-item {
+                padding: 6px 14px;
+                font-size: 0.75rem;
+                border-radius: 40px;
+            }
+            
+            .header-content {
+                padding: 40px 15px;
+            }
+            
+            .header-content h1 {
+                font-size: 2rem;
+                letter-spacing: 1px;
+                margin-bottom: 20px;
+            }
+            
+            .header-content .lead {
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+                margin-bottom: 30px;
+            }
+            
+            .header-content .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            section {
+                margin: 40px 15px;
+                padding: 40px 25px;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
+            }
+            
+            .contact-form {
+                padding: 35px 25px;
+            }
+            
+            .card {
+                margin-bottom: 20px;
+            }
+            
+            .row {
+                margin-bottom: 20px;
+            }
+            
+            /* Уменьшаем размеры для мобильных */
+            .card-img-top {
+                height: 200px;
+            }
+            
+            .price {
+                font-size: 1.5rem;
+            }
+            
+            .contact-info p {
+                font-size: 1rem;
+                margin: 12px 0;
+            }
+            
+            /* Скрываем индикатор прокрутки на мобильных */
+            .scroll-indicator {
+                display: none;
+            }
+            
+            /* Оптимизируем анимации для мобильных */
+            .scroll-animate {
+                transition-duration: 0.6s;
+            }
+            
+            /* Уменьшаем количество LED точек на мобильных */
+            .led-dot {
+                display: none;
+            }
+            
+            /* Упрощаем модульную сетку на мобильных */
+            .led-grid {
+                background-size: 50px 50px;
+            }
+            
+            .led-grid::after {
+                background-size: 15px 15px;
+            }
+            
+            /* Улучшаем сетку для карточек товаров на мобильных */
+            .col-md-4,
+            .col-md-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            /* Улучшаем сетку для карточек товаров */
+            #products .row {
+                margin: 0;
+            }
+            
+            .card {
+                margin-bottom: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-content h1 {
+                font-size: 1.6rem;
+            }
+            
+            .header-content .lead {
+                font-size: 0.95rem;
+                letter-spacing: 0.5px;
+            }
+            
+            .fixed-menu-item {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+            
+            section {
+                margin: 30px 10px;
+                padding: 30px 20px;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
+            
+            .contact-form {
+                padding: 30px 20px;
+            }
+            
+            .form-control {
+                padding: 14px 16px;
+                font-size: 0.95rem;
+            }
+            
+            .card-img-top {
+                height: 180px;
+            }
+            
+            .price {
+                font-size: 1.3rem;
+            }
+            
+            .btn-primary {
+                padding: 14px 30px;
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Горизонтальная ориентация мобильных */
+        @media (max-width: 896px) and (orientation: landscape) {
+            .header-content {
+                padding: 30px 20px;
+            }
+            
+            .header-content h1 {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .header-content .lead {
+                font-size: 1.2rem;
+                margin-bottom: 25px;
+            }
+            
+            section {
+                margin: 50px auto;
+                padding: 50px 35px;
+            }
+        }
+        
+        /* Адаптивность для планшетов - 2 колонки */
+        @media (min-width: 769px) and (max-width: 991px) {
+            .col-md-4 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            
+            .card-img-top {
+                height: 220px;
+            }
+        }
+        
+        /* Дополнительные улучшения для очень маленьких экранов */
+        @media (max-width: 360px) {
+            .header-content h1 {
+                font-size: 1.4rem;
+            }
+            
+            .header-content .lead {
+                font-size: 0.85rem;
+            }
+            
+            .fixed-menu {
+                gap: 5px;
+                right: 5px;
+                top: 5px;
+            }
+            
+            .fixed-menu-item {
+                padding: 6px 10px;
+                font-size: 0.7rem;
+            }
+            
+            section {
+                margin: 25px 8px;
+                padding: 25px 15px;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* Индикатор прокрутки */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            color: #00c8ff;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+        
+        .navbar {
+            background: rgba(10, 10, 20, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(0, 150, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
+        }
+        
+        .navbar-brand, .nav-link {
+            color: #e0e0e0 !important;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+        }
+        
+        .navbar-brand:hover, .nav-link:hover {
+            color: #00c8ff !important;
+            text-shadow: 0 0 15px rgba(0, 200, 255, 1);
+        }
+        
+        .navbar-toggler {
+            border-color: rgba(0, 200, 255, 0.5);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 200, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .btn-lg {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+        
+        section {
+            background: rgba(15, 20, 35, 0.9);
+            margin: 0 auto;
+            max-width: 1400px;
+            border-radius: 0;
+            padding: 80px 60px;
+            border: none;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                margin: 0;
+                padding: 50px 30px;
+            }
+        }
+        
+        h2 {
+            margin-bottom: 60px;
+            color: #00c8ff;
+            text-shadow: 0 0 20px rgba(0, 200, 255, 0.8);
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+        
+        .row {
+            margin-bottom: 30px;
+        }
+        
+        /* Карточки как модули LED экранов */
+        .card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid rgba(0, 150, 255, 0.4);
+            border-radius: 0;
+            overflow: visible;
+            background: rgba(15, 20, 35, 0.95);
+            box-shadow: 
+                0 0 15px rgba(0, 150, 255, 0.3),
+                inset 0 0 15px rgba(0, 150, 255, 0.1);
+            color: #e0e0e0;
+            position: relative;
+            margin: 2px;
+            /* Анимация сборки при загрузке */
+            animation: moduleAssemble 0.8s ease-out backwards;
+        }
+        
+        @keyframes moduleAssemble {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) rotateY(15deg);
+                filter: blur(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotateY(0deg);
+                filter: blur(0px);
+            }
+        }
+        
+        /* Задержка анимации для каждого модуля */
+        #products .col-md-4:nth-child(1) .card { animation-delay: 0.1s; }
+        #products .col-md-4:nth-child(2) .card { animation-delay: 0.2s; }
+        #products .col-md-4:nth-child(3) .card { animation-delay: 0.3s; }
+        #products .col-md-4:nth-child(4) .card { animation-delay: 0.4s; }
+        #products .col-md-4:nth-child(5) .card { animation-delay: 0.5s; }
+        #products .col-md-4:nth-child(6) .card { animation-delay: 0.6s; }
+        
+        /* Эффект свечения модуля при наведении */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(0, 200, 255, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: rgba(0, 255, 255, 1);
+            box-shadow: 
+                0 0 50px rgba(0, 200, 255, 0.8),
+                0 0 80px rgba(0, 150, 255, 0.6),
+                inset 0 0 30px rgba(0, 200, 255, 0.2);
+            z-index: 10;
+        }
+        
+        .card:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+        
+        /* Эффект соединения соседних модулей */
+        .row:hover .card {
+            border-color: rgba(0, 150, 255, 0.6);
+        }
+        
+        .row:hover .card:hover {
+            border-color: rgba(0, 255, 255, 1);
+        }
+        
+        /* Внутренняя модульная структура карточки */
+        .card-body {
+            position: relative;
+            background: linear-gradient(135deg, rgba(20, 25, 40, 0.9), rgba(15, 20, 35, 0.9));
+            padding: 20px;
+        }
+        
+        .card-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 150, 255, 0.05) 2px, rgba(0, 150, 255, 0.05) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 150, 255, 0.05) 2px, rgba(0, 150, 255, 0.05) 4px);
+            pointer-events: none;
+        }
+        
+        /* Угловые соединения модулей - создаются через JavaScript */
+        .module-corner {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .module-corner.top-left {
+            top: -3px;
+            left: -3px;
+            border-top: 2px solid rgba(0, 200, 255, 0.6);
+            border-left: 2px solid rgba(0, 200, 255, 0.6);
+        }
+        
+        .module-corner.top-right {
+            top: -3px;
+            right: -3px;
+            border-top: 2px solid rgba(0, 200, 255, 0.6);
+            border-right: 2px solid rgba(0, 200, 255, 0.6);
+        }
+        
+        .module-corner.bottom-left {
+            bottom: -3px;
+            left: -3px;
+            border-bottom: 2px solid rgba(0, 200, 255, 0.6);
+            border-left: 2px solid rgba(0, 200, 255, 0.6);
+        }
+        
+        .module-corner.bottom-right {
+            bottom: -3px;
+            right: -3px;
+            border-bottom: 2px solid rgba(0, 200, 255, 0.6);
+            border-right: 2px solid rgba(0, 200, 255, 0.6);
+        }
+        
+        .card:hover .module-corner {
+            opacity: 1;
+        }
+        
+        /* Показывать углы при наведении на строку */
+        #products .row:hover .card .module-corner {
+            opacity: 0.6;
+        }
+        
+        #products .row:hover .card:hover .module-corner {
+            opacity: 1;
+        }
+        
+        .card-title {
+            color: #00c8ff;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+        }
+        
+        .card-text {
+            color: #b0b0b0;
+        }
+        
+        .card-img-top {
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+            filter: brightness(0.8) contrast(1.1);
+        }
+        
+        .card:hover .card-img-top {
+            transform: scale(1.1);
+            filter: brightness(1) contrast(1.2);
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff88;
+            margin: 15px 0;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+        }
+        
+        .price-old {
+            font-size: 1.2rem;
+            color: #666;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        
+        footer {
+            background: rgba(5, 5, 15, 0.95);
+            position: relative;
+            z-index: 1;
+            border-top: 2px solid rgba(0, 150, 255, 0.3);
+            box-shadow: 0 -5px 20px rgba(0, 150, 255, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #0096ff, #00c8ff);
+            border: 2px solid rgba(0, 200, 255, 0.5);
+            border-radius: 25px;
+            padding: 12px 35px;
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #00c8ff, #00ffaa);
+            border-color: rgba(0, 255, 170, 0.8);
+            box-shadow: 0 0 30px rgba(0, 200, 255, 0.8);
+            transform: scale(1.05);
+            color: #fff;
+        }
+        
+        .product-card {
+            margin-bottom: 30px;
+        }
+        
+        /* Контейнер модулей - показывает сборку */
+        #products .row {
+            position: relative;
+            padding: 10px;
+            border: 2px solid rgba(0, 150, 255, 0.2);
+            border-radius: 0;
+            background: rgba(10, 15, 25, 0.5);
+            margin: 20px 0;
+            box-shadow: inset 0 0 30px rgba(0, 150, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        #products .row:hover {
+            border-color: rgba(0, 200, 255, 0.5);
+            box-shadow: 
+                inset 0 0 30px rgba(0, 150, 255, 0.2),
+                0 0 20px rgba(0, 150, 255, 0.3);
+        }
+        
+        /* Визуальное соединение модулей линиями */
+        #products .row::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(to right, transparent 33%, rgba(0, 150, 255, 0.1) 33%, rgba(0, 150, 255, 0.1) 34%, transparent 34%),
+                linear-gradient(to right, transparent 66%, rgba(0, 150, 255, 0.1) 66%, rgba(0, 150, 255, 0.1) 67%, transparent 67%),
+                linear-gradient(to bottom, transparent 33%, rgba(0, 150, 255, 0.1) 33%, rgba(0, 150, 255, 0.1) 34%, transparent 34%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        #products .row:hover::before {
+            opacity: 1;
+        }
+        
+        /* Подпись к секции модулей */
+        #products h2::after {
+
+            font-size: 0.6em;
+            color: rgba(0, 200, 255, 0.7);
+            font-weight: normal;
+            margin-left: 20px;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+        }
+        
+        /* Анимация сборки для всей секции */
+        #products {
+            animation: sectionAssemble 1s ease-out;
+        }
+        
+        @keyframes sectionAssemble {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .badge-discount {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff0066, #ff3399);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(255, 0, 102, 0.8);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Улучшенная форма обратной связи */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 25px 30px;
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.95), rgba(20, 25, 40, 0.95));
+            border-radius: 20px;
+            border: 2px solid rgba(0, 150, 255, 0.4);
+            box-shadow: 
+                0 0 40px rgba(0, 150, 255, 0.4),
+                inset 0 0 30px rgba(0, 150, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 200, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 15px;
+            z-index: 1;
+        }
+        
+        .form-label {
+            color: #00c8ff;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-label i {
+            font-size: 1rem;
+            color: #00c8ff;
+        }
+        
+        .form-control {
+            background: rgba(10, 15, 25, 0.9);
+            border: 2px solid rgba(0, 150, 255, 0.3);
+            border-radius: 12px;
+            color: #fff;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            position: relative;
+        }
+        
+        .form-control:focus {
+            background: rgba(15, 20, 30, 0.95);
+            border-color: #00c8ff;
+            box-shadow: 
+                0 0 25px rgba(0, 200, 255, 0.6),
+                inset 0 0 10px rgba(0, 200, 255, 0.1);
+            color: #fff;
+            outline: none;
+            transform: translateY(-2px);
+        }
+        
+        .form-control::placeholder {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .form-control:not(:placeholder-shown) {
+            border-color: rgba(0, 200, 255, 0.5);
+        }
+        
+        /* Textarea стили */
+        textarea.form-control {
+            resize: vertical;
+            min-height: 80px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        /* Валидация */
+        .form-control:invalid:not(:placeholder-shown) {
+            border-color: rgba(255, 100, 100, 0.6);
+            box-shadow: 0 0 20px rgba(255, 100, 100, 0.3);
+        }
+        
+        .form-control:valid:not(:placeholder-shown) {
+            border-color: rgba(0, 255, 136, 0.6);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+        
+        /* Улучшенная кнопка отправки */
+        .contact-form .btn-primary {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-form .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .contact-form .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .contact-info {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .contact-info p {
+            margin: 15px 0;
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info i {
+            color: #00c8ff;
+            margin-right: 10px;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
+        }
+        
+        p {
+            color: #b0b0b0;
+        }
+
+.card-custom {
+    background: rgba(20, 25, 40, 0.6);
+    border-radius: 15px;
+    border: 2px solid rgba(0, 150, 255, 0.2);
+    padding: 40px 30px; /* вертикальный и горизонтальный отступ */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* выравнивание текста по вертикали */
+    align-items: center;     /* выравнивание текста по горизонтали */
+    height: 100%;
+    min-height: 400px;       /* прямоугольная форма */
+    text-align: center;      /* текст по центру */
+}
+
+.card-custom h4 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;       /* крупнее заголовок */
+    color: #00c8ff;          /* возвращаем твой цвет */
+}
+
+.card-custom ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1.8;
+    font-size: 1.05rem;      /* удобочитаемый размер текста */
+}
+
+.card-custom ul li {
+    margin-bottom: 10px;     /* расстояние между пунктами списка */
+}    
+
+
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const animateElements = document.querySelectorAll('.scroll-animate');
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible'); // запускаем анимацию
+                obs.unobserve(entry.target);           // больше не трогаем
+            }
+        });
+    }, { threshold: 0.1 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+            
+            // Обработчик кнопки "Оставить заявку" в хедере
+            const headerButton = document.querySelector('header .btn-primary');
+            if (headerButton && headerButton.textContent.includes('Оставить заявку')) {
+                headerButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => {
+                        document.getElementById('contact-name').focus();
+                    }, 500);
+                });
+            }
+            
+            // Плавный скролл для фиксированного меню
+            const fixedMenuItems = document.querySelectorAll('.fixed-menu-item');
+            fixedMenuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+            
+            // Intersection Observer для анимаций при прокрутке
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Наблюдаем за всеми элементами с классом scroll-animate
+            const animateElements = document.querySelectorAll('.scroll-animate');
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Автоматически добавляем классы к элементам
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                if (!section.querySelector('h2')) return;
+                const h2 = section.querySelector('h2');
+                if (!h2.classList.contains('scroll-animate')) {
+                    h2.classList.add('scroll-animate', 'animate-fade-up');
+                }
+            });
+            
+            // Анимируем карточки товаров
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach((card, index) => {
+                card.classList.add('scroll-animate', 'animate-fade-up', `delay-${(index % 6) + 1}`);
+            });
+            
+            // Анимируем карточки в секции "О нас"
+            const aboutCards = document.querySelectorAll('#about .col-md-6');
+            aboutCards.forEach((card, index) => {
+                card.classList.add('scroll-animate', 'animate-fade-up', `delay-${index + 1}`);
+            });
+            
+            // Анимируем форму
+            const contactFormAnimate = document.querySelector('#contact-form');
+            if (contactFormAnimate) {
+                contactFormAnimate.classList.add('scroll-animate', 'animate-scale');
+            }
+            
+            // Анимируем контактную информацию
+            const contactInfo = document.querySelector('.contact-info');
+            if (contactInfo) {
+                contactInfo.classList.add('scroll-animate', 'animate-fade-up', 'delay-2');
+            }
+            
+            // Анимируем текстовые блоки в секции "О нас"
+            const aboutTexts = document.querySelectorAll('#about p, #about h3, #about h4');
+            aboutTexts.forEach((text, index) => {
+                text.classList.add('scroll-animate', 'animate-fade-up', `delay-${(index % 4) + 1}`);
+            });
+            
+            // Обработчик кнопок "Купить"
+            const buyButtons = document.querySelectorAll('.btn-primary');
+            buyButtons.forEach(button => {
+                if (button.textContent === 'Купить') {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const card = this.closest('.card');
+                        const productName = card.querySelector('.card-title').textContent;
+                        alert(`Товар "${productName}" добавлен в корзину!`);
+                    });
+                }
+            });
+            
+            // Обработка формы обратной связи
+            const contactForm = document.querySelector('#contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.querySelector('#contact-name').value.trim();
+                    const phone = document.querySelector('#contact-phone').value.trim();
+                    const email = document.querySelector('#contact-email').value.trim();
+                    const message = document.querySelector('#contact-message').value.trim();
+                    
+                    // Валидация обязательных полей
+                    if (!name || !phone || !email) {
+                        alert('Пожалуйста, заполните все обязательные поля!');
+                        return;
+                    }
+                    
+                    // Проверка имени
+                    if (name.length < 2) {
+                        alert('Имя должно содержать минимум 2 символа!');
+                        return;
+                    }
+                    
+                    // Проверка email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Пожалуйста, введите корректный email адрес!');
+                        return;
+                    }
+                    
+                    // Проверка телефона
+                    const phoneRegex = /^[\+]?[7]?[0-9\s\-\(\)]{10,}$/;
+                    if (!phoneRegex.test(phone)) {
+                        alert('Пожалуйста, введите корректный номер телефона!');
+                        return;
+                    }
+                    
+                    // Показываем индикатор загрузки
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i> Отправка...';
+                    
+                    // Имитация отправки
+                    setTimeout(() => {
+                        const messageText = message ? `\n\nВаше сообщение: ${message}` : '';
+                        alert(`Спасибо, ${name}!\n\nВаша заявка успешно отправлена. Мы свяжемся с вами по телефону ${phone} или email ${email} в ближайшее время.${messageText}`);
+                        
+                        // Очистка формы
+                        contactForm.reset();
+                        
+                        // Восстанавливаем кнопку
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalText;
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="animated-background"></div>
+    <div class="led-grid"></div>
+    <div class="led-dots"></div>
+    <header>
+        <video class="header-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=1920&h=1080&fit=crop">
+            <source src="12.mp4" type="video/mp4">
+            <source src="12.mp4" type="video/mp4">
+            <!-- Fallback изображение если видео не загрузится -->
+            <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=1920&h=1080&fit=crop" alt="LED экран">
+        </video>
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <h1>Продажа LED экранов</h1>
+            <p class="lead">Заводская сборка / Лёгкий монтаж / Великолепное качество</p>
+            <button class="btn btn-primary btn-lg mt-4">
+                <i class="fas fa-envelope"></i> Оставить заявку
+            </button>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down" style="font-size: 2rem;"></i>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Прокрутите вниз</p>
+        </div>
+    </header>
+    <!-- Фиксированное меню в правом верхнем углу -->
+    <div class="fixed-menu">
+        <a href="#about" class="fixed-menu-item">О нас</a>
+        <a href="#products" class="fixed-menu-item">Продукция</a>
+        <a href="#contact" class="fixed-menu-item">Контакты</a>
+    </div>
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 style="color: #00c8ff; font-size: 5rem; margin-bottom: 30px; text-align: center;">Мы Electrion Led</h2>
+            
+            <div class="row g-5 mb-5">
+ <div class="col-md-12">
+    <div class="text-center mb-4" style="max-width: 1200px; margin: 0 auto;">
+        <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            Наша специализация - это производство и поставка высококачественных светодиодных <strong>LED экранов</strong> для любых сфер применения: от рекламных кампаний и мероприятий до корпоративных и общественных объектов.
+        </p>
+        <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            Наша компания является официальным представителем ведущих заводов светодиодной продукции из Китая, что гарантирует <strong>оригинальность оборудования</strong>, высокие стандарты качества и надежность работы.
+        </p>
+        <p style="font-size: 1.3rem; line-height: 1.8;">
+            Мы обеспечиваем <strong>прямые поставки со склада</strong> и заводскую сборку оборудования, чтобы каждый экран был полностью готов к эксплуатации сразу после установки. С нами вы получаете надежное и современное решение для вашего проекта.
+        </p>
+    </div>
+</div>
+            </div>
+            
+            <!-- Новые преимущества -->
+<div class="row g-3 mb-4"> <!-- уменьшаем отступы между колонками и снизу -->
+    <div class="col-md-6 col-lg-4"> <!-- карточка станет шире на средних экранах -->
+                    <div style="padding: 25px; background: rgba(20, 25, 40, 0.6); border-radius: 15px; border: 2px solid rgba(0, 150, 255, 0.2); height: 100%; text-align: center;">
+                        <i class="fas fa-shipping-fast" style="color: #00c8ff; font-size: 3rem; margin-bottom: 15px;"></i>
+                        <h4 style="color: #00c8ff; margin-bottom: 15px;">Быстрая доставка</h4>
+                        <p style="color: #b0b0b0; line-height: 1.8; font-size: 0.95rem;">Доставка по всей России от 3 до 14 дней в зависимости от региона</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="padding: 25px; background: rgba(20, 25, 40, 0.6); border-radius: 15px; border: 2px solid rgba(0, 150, 255, 0.2); height: 100%; text-align: center;">
+                        <i class="fas fa-tools" style="color: #00c8ff; font-size: 3rem; margin-bottom: 15px;"></i>
+                        <h4 style="color: #00c8ff; margin-bottom: 15px;">Установка и настройка</h4>
+                        <p style="color: #b0b0b0; line-height: 1.8; font-size: 0.95rem;">Профессиональный монтаж и техническая поддержка после продажи</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="padding: 25px; background: rgba(20, 25, 40, 0.6); border-radius: 15px; border: 2px solid rgba(0, 150, 255, 0.2); height: 100%; text-align: center;">
+                        <i class="fas fa-shield-alt" style="color: #00c8ff; font-size: 3rem; margin-bottom: 15px;"></i>
+                        <h4 style="color: #00c8ff; margin-bottom: 15px;">Гарантия качества</h4>
+                        <p style="color: #b0b0b0; line-height: 1.8; font-size: 0.95rem;">Гарантия на все оборудование 2 года, сертификация EMC</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row g-5">
+ <div class="col-md-12" style="padding-top: 40px; padding-bottom: 20px;">
+    <h3 style="color: #00c8ff; font-size: 5rem; text-align: center;">Мы предлагаем</h3>
+</div>
+                
+
+
+
+
+<div class="row g-4 mb-5">
+
+        <!-- Карточка 1 -->
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h4><i class="fas fa-cube" style="margin-right: 10px;"></i>LED Экраны</h4>
+            <ul>
+                <li><i class="fas fa-check" style="margin-right: 8px;"></i>Для помещений (Indoor)</li>
+                <li><i class="fas fa-check" style="margin-right: 8px;"></i>Уличные (Outdoor)</li>
+                <li><i class="fas fa-check" style="margin-right: 8px;"></i>С HUB системой подключения</li>
+                <li><i class="fas fa-check" style="margin-right: 8px;"></i>С технологией GOB</li>
+                <li><i class="fas fa-check" style="margin-right: 8px;"></i>С сертификатом EMC</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Карточка 2 -->
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h4><i class="fas fa-ruler" style="margin-right: 10px;"></i>Характеристики</h4>
+            <ul>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Размер кабинетов: 500×500 мм</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Шаг пикселя: 1.9, 2.6, 2.9, 3.9, 4.8 мм</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>15 видов кабинетов</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Поворотные замки</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Заводская сборка</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <!-- Карточка 3 -->
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h4><i class="fas fa-shipping-fast" style="margin-right: 10px;"></i>Доставка</h4>
+            <ul>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>По всей России</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Сроки: 3–14 дней</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Контроль качества на складе</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Упаковка и логистика</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Сопровождение доставки</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Карточка 4 -->
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h4><i class="fas fa-tools" style="margin-right: 10px;"></i>Сервис и поддержка</h4>
+            <ul>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Монтаж и установка</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Настройка оборудования</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Тестирование перед запуском</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Гарантийное обслуживание</li>
+                <li><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Техническая поддержка</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+        
+    </section>
+    <section id="products" class="py-5">
+        <div class="container">
+<div class="col-md-12" style="padding-top: 0; padding-bottom: 20px; text-align: center;">
+ <h3 style="color: #00c8ff; font-size: 5rem; margin: 10px 0 0 0;">
+        Наши продукты
+    </h3>
+</div>
+ 
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=400&h=300&fit=crop" class="card-img-top" alt="QIANGLI DM 3.9 Indoor HUB">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Led screen 3.9mm</h5>
+                            <p class="card-text">Шаг пикселя 3.9 мм. Габариты 500×500 мм.</p>
+                            <div class="price">27 144 ₽</div>
+                            <button class="btn btn-primary">Купить</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop" class="card-img-top" alt="QIANGLI DM 3.9 Indoor HUB (GOB)">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Led screen 3.9mm</h5>
+                            <p class="card-text">Шаг пикселя 3.9 мм. Габариты 500×500 мм.</p>
+                            <div class="price">29 728 ₽</div>
+                            <button class="btn btn-primary">Купить</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=300&fit=crop" class="card-img-top" alt="QIANGLI DM 3.9 Outdoor HUB">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Led screen 3.9mm</h5>
+                            <p class="card-text">Шаг пикселя 3.9 мм. Габариты 500×500 мм.</p>
+                            <div class="price">29 281 ₽</div>
+                            <button class="btn btn-primary">Купить</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=400&h=300&fit=crop" class="card-img-top" alt="QIANGLI DM 2.6 Indoor HUB">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Led sreen 3.9mm</h5>
+                            <p class="card-text">Шаг пикселя 3.9 мм. Габариты 500×500 мм.</p>
+                            <div class="price">32 460 ₽</div>
+                            <button class="btn btn-primary">Купить</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1593642634443-44adaa06623a?w=400&h=300&fit=crop" class="card-img-top" alt="QIANGLI DM 2.6 Indoor HUB (GOB)">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Led sreen 3.9mm</h5>
+                            <p class="card-text">Шаг пикселя 3.9 мм. Габариты 500×500 мм.</p>
+                            <div class="price">35 039 ₽</div>
+                            <button class="btn btn-primary">Купить</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=300&fit=crop" class="card-img-top" alt="QIANGLI DM 1.9 Indoor HUB (GOB)">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Led sreen 3.9mm</h5>
+                            <p class="card-text">Шаг пикселя 3.9 мм. Габариты 500×500 мм.</p>
+                            <div class="price">41 458 ₽</div>
+                            <button class="btn btn-primary">Купить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Свяжитесь с нами:</h2>
+            <!--<p class="text-center mb-5">Свяжитесь с нами для получения дополнительной информации:</p>-->
+            
+            <!-- Улучшенная форма обратной связи -->
+            <form id="contact-form" class="contact-form">
+                <h3 class="text-center mb-3" style="color: #00c8ff; font-size: 1.5rem;"></h3>
+                <p class="text-center mb-3" style="color: #b0b0b0; font-size: 0.9rem;">Заполните форму и наш менеджер свяжется с вами в ближайшее время</p>
+                
+                <div class="form-group">
+                    <label for="contact-name" class="form-label">
+                        <i class="fas fa-user"></i> Ваше имя
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="contact-name" 
+                        name="name" 
+                        placeholder="Введите ваше имя" 
+                        required
+                        minlength="2"
+                        pattern="[А-Яа-яЁёA-Za-z\s]+"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-phone" class="form-label">
+                        <i class="fas fa-phone"></i> Номер телефона
+                    </label>
+                    <input 
+                        type="tel" 
+                        class="form-control" 
+                        id="contact-phone" 
+                        name="phone" 
+                        placeholder="+7 (___) ___-__-__" 
+                        required
+                        pattern="[\+]?[7]?[0-9\s\-\(\)]+"
+                        minlength="10"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-email" class="form-label">
+                        <i class="fas fa-envelope"></i> Email адрес
+                    </label>
+                    <input 
+                        type="email" 
+                        class="form-control" 
+                        id="contact-email" 
+                        name="email" 
+                        placeholder="example@mail.com" 
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-message" class="form-label">
+                        <i class="fas fa-comment"></i> Сообщение (необязательно)
+                    </label>
+                    <textarea 
+                        class="form-control" 
+                        id="contact-message" 
+                        name="message" 
+                        rows="4" 
+                        placeholder="Расскажите о вашем проекте или задайте вопрос"
+                        style="resize: vertical; min-height: 120px;"
+                    ></textarea>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Отправить заявку
+                    </button>
+                </div>
+                
+                <p class="text-center mt-3" style="color: #666; font-size: 0.85rem;">
+                    <i class="fas fa-lock" style="margin-right: 5px;"></i>
+                    Ваши данные защищены и не будут переданы третьим лицам
+                </p>
+            </form>
+            
+            <!-- Контактная информация -->
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Телефон: <a href="tel:+70000000000" style="color: #00c8ff; text-decoration: none;">+7 (000) 00-00-000</a></p>
+                <p><i class="fas fa-envelope"></i> Email: info@electrion-led.ru</p>
+                <p><i class="fas fa-map-marker-alt"></i> Адрес: г. Москва</p>
+
+            </div>
+        </div>
+    </section>
+    <footer class="text-white text-center py-4">
+        <p class="mb-2" style="font-size: 1.2rem; color: #00c8ff; font-weight: bold;">Ценим доверие - Гарантируем качество</p>
+        <p class="mb-2"><i class="fas fa-phone"></i> +7 (000) 00-00-000</p>
+        <p class="mb-2">Прямые поставки из Китая на склад | Заводская сборка | Лёгкий монтаж</p>
+        <p style="color: #888;">&copy; 2025 Производство LED экранов. Все права защищены.</p>
+    </footer>
+</body>
+</html>
