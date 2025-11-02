@@ -983,6 +983,9 @@
             position: relative;
             overflow: hidden;
         }
+
+
+        
         
         .contact-form::before {
             content: '';
@@ -1126,6 +1129,7 @@
         p {
             color: #b0b0b0;
         }
+        
 
 .card-custom {
     background: rgba(20, 25, 40, 0.6);
@@ -1158,6 +1162,271 @@
 .card-custom ul li {
     margin-bottom: 10px;     /* расстояние между пунктами списка */
 }    
+
+
+
+
+
+
+
+
+
+
+
+/* Общие стили */
+body, html {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Контейнеры и секции */
+.container, section, .row {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+/* Общие вертикальные отступы между секциями */
+section {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+/* Видео хедера */
+header .header-video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Хедер */
+header .header-content {
+    text-align: center;
+    padding: 25px 10px;
+}
+
+header h1 {
+    font-size: 2.3rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+header p.lead {
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+/* Меню */
+.fixed-menu {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    padding: 10px 0;
+}
+
+.fixed-menu-item {
+    font-size: 0.95rem;
+    color: #00c8ff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Секция "О нас" */
+#about h2, #about h3 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 18px;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+#about p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* Карточки преимуществ */
+.row.g-3 .col-md-6, 
+.row.g-3 .col-md-4 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+/* Карточки преимуществ — фикс ширины для ПК */
+.row.g-3 .col-md-6 .card-custom,
+.row.g-3 .col-md-4 .card-custom {
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto 15px auto !important;
+    text-align: center !important;
+}
+
+/* ===== Исправление ширины карточек LED секции ===== */
+#about .row.g-3 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#about .row.g-3 .col-md-4 {
+    flex: 1 1 350px;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+#about .card-custom {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Секция "Мы предлагаем" */
+.row.g-4 .col-md-6 .card-custom {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 12px auto;
+    text-align: center;
+}
+
+/* Секция "Продукция" */
+#products h3 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 18px;
+    font-weight: 600;
+}
+
+.product-card {
+    margin: 0 auto 12px auto;
+    max-width: 100%;
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.product-card .card-body {
+    padding: 10px;
+}
+
+/* Секция "Контакты" */
+#contact h2 {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+#contact-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#contact-form .form-group {
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 0.85rem;
+}
+
+/* Анимации */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Мобильные стили */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.9rem;
+        margin-bottom: 8px;
+    }
+
+    #about h2, 
+    #about h3, 
+    #products h3 {
+        font-size: 1.5rem !important;
+        margin-bottom: 12px;
+        line-height: 1.25;
+    }
+
+    #contact h2 {
+        font-size: 1.4rem !important;
+    }
+
+    .card-custom h4, 
+    .product-card .card-title {
+        font-size: 1rem !important;
+    }
+
+    #about p, 
+    #contact p, 
+    .card-text {
+        font-size: 0.9rem;
+        line-height: 1.3;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    .row.g-4 > [class*='col-'] {
+        margin-bottom: 10px;
+    }
+
+    section {
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    /* --- Главное исправление для карточек --- */
+    #about .row.g-3 {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #about .row.g-3 .col-md-4,
+    #about .row.g-3 .col-md-6 {
+        flex: 1 1 100%;
+        max-width: 95% !important;
+        margin: 0 auto;
+    }
+
+    #about .card-custom,
+    .row.g-4 .col-md-6 .card-custom,
+    .product-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto 15px auto !important;
+        border-radius: 12px;
+    }
+}
+
+
 
 
 
@@ -1361,6 +1630,8 @@
             <p style="margin-top: 10px; font-size: 0.9rem;">Прокрутите вниз</p>
         </div>
     </header>
+
+
     <!-- Фиксированное меню в правом верхнем углу -->
     <div class="fixed-menu">
         <a href="#about" class="fixed-menu-item">О нас</a>
@@ -1377,12 +1648,7 @@
         <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 1.5rem;">
             Наша специализация - это производство и поставка высококачественных светодиодных <strong>LED экранов</strong> для любых сфер применения: от рекламных кампаний и мероприятий до корпоративных и общественных объектов.
         </p>
-        <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 1.5rem;">
-            Наша компания является официальным представителем ведущих заводов светодиодной продукции из Китая, что гарантирует <strong>оригинальность оборудования</strong>, высокие стандарты качества и надежность работы.
-        </p>
-        <p style="font-size: 1.3rem; line-height: 1.8;">
-            Мы обеспечиваем <strong>прямые поставки со склада</strong> и заводскую сборку оборудования, чтобы каждый экран был полностью готов к эксплуатации сразу после установки. С нами вы получаете надежное и современное решение для вашего проекта.
-        </p>
+
     </div>
 </div>
             </div>
@@ -1392,8 +1658,8 @@
     <div class="col-md-6 col-lg-4"> <!-- карточка станет шире на средних экранах -->
                     <div style="padding: 25px; background: rgba(20, 25, 40, 0.6); border-radius: 15px; border: 2px solid rgba(0, 150, 255, 0.2); height: 100%; text-align: center;">
                         <i class="fas fa-shipping-fast" style="color: #00c8ff; font-size: 3rem; margin-bottom: 15px;"></i>
-                        <h4 style="color: #00c8ff; margin-bottom: 15px;">Быстрая доставка</h4>
-                        <p style="color: #b0b0b0; line-height: 1.8; font-size: 0.95rem;">Доставка по всей России от 3 до 14 дней в зависимости от региона</p>
+                        <h4 style="color: #00c8ff; margin-bottom: 15px;">Производство</h4>
+                        <p style="color: #b0b0b0; line-height: 1.8; font-size: 0.95rem;">Изготавливаем качественные экраны для любых сфера применения</p>
                     </div>
                 </div>
                 <div class="col-md-4">
